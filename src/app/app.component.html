@@ -1,4 +1,19 @@
 
+<!-- Grey with black text -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" [routerLink]="[ '/pagina-principal']">HOME</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="[ '/empleados']">Empleado</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="[ '/contacto']">Contacto</a>
+    </li>
+  </ul>
+</nav>
+
 <div id="main">
   <router-outlet></router-outlet>
 </div>

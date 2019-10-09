@@ -1,0 +1,15 @@
+<p>home works!</p>
+
+<h2>{{titulo}}</h2>
+<br/>
+
+<input type="text" [(ngModel)]="prenda_a_guardar">
+<button>Añadir prenda</button>
+
+<h3>lISTADO DE PRENDAS DE ROPA</h3>
+
+<ul>
+   <li *ngFor="let item of listado_ropa">
+      {{item}}
+   </li>
+</ul>
