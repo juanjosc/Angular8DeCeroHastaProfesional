@@ -4,12 +4,31 @@
 <br/>
 
 <input type="text" [(ngModel)]="prenda_a_guardar">
-<button>Añadir prenda</button>
 
-<h3>lISTADO DE PRENDAS DE ROPA</h3>
+<button type="button" class="btn btn-success" (click)="guardarPrenda()">Añadir prenda</button>
+
+<br/>
+<span *ngIf="prenda_a_guardar != null">La prenda a guardar es:
+   <strong>{{prenda_a_guardar}}</strong>
+</span>
+
+<h3>LISTADO DE PRENDAS DE ROPA</h3>
 
 <ul>
-   <li *ngFor="let item of listado_ropa">
-      {{item}}
+   <li *ngFor="let item of listado_ropa; let i = index">
+     {{i}} {{item}}
+     <button  type="button" class="btn btn-danger" (click)="eliminarPrenda(i)">
+       Eliminar</button>
    </li>
 </ul>
+
+
+<!-- tuberia para mostrar fecha de manera determinada
+      O pasarlo todo a mayuscula-->
+{{fecha | date:'fullDate' | uppercase}}
+--
+{{fecha| date:'dd/MM/yyyy'}}
+
+--
+
+{{5 | conversor: 7}}
