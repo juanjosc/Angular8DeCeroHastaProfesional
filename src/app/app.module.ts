@@ -12,6 +12,9 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { ConversorPipe } from './pipes/conversor.pipe';
 import { CochesComponent } from './coches/coches.component';
 
+// Importar HttpClientModule
+import {HttpClientModule} from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { CochesComponent } from './coches/coches.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule, // cargamos el módulo
+
   ],
   providers: [],
   bootstrap: [AppComponent]

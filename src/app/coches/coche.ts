@@ -3,5 +3,5 @@ export class Coche {
   public nombre: string,
   public  caballaje: string,
   public color: string
-  ){}
+  ) {}
 }
