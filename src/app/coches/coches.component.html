@@ -2,57 +2,69 @@
 
 <div style="float: left; margin-left: 30px;">
   <!--formCoche.reset(); nos limpia el formulario sin que de error en ninguna validacion  -->
-    <form #formCoche="ngForm" style="margin: 5% 25% 10% 10%; width: 200px;"
-     (ngSubmit)="onSubmit(); formCoche.reset();">
-      <p>
-        <label>Nombre:</label>
-        <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="coche.nombre"
-        autofocus required>
-        <!--class="alert alert-danger" proporciona un panel de alerta  -->
-        <span *ngIf="nombre.touched && !nombre.valid" class="alert alert-danger">
-          El nombre del coche es incorrecto
-        </span>
-      </p>
+  <form #formCoche="ngForm" style="margin: 5% 25% 10% 10%; width: 200px;" (ngSubmit)="onSubmit(); formCoche.reset();">
+    <p>
+      <label>Nombre:</label>
+      <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="coche.nombre" autofocus required>
+      <!--class="alert alert-danger" proporciona un panel de alerta  -->
+      <span *ngIf="nombre.touched && !nombre.valid" class="alert alert-danger">
+        El nombre del coche es incorrecto
+      </span>
+    </p>
 
-      <p>
-        <label>Caballaje</label>
-        <!-- pattern es una expresion regular para realizar validaciones
+    <p>
+      <label>Caballaje</label>
+      <!-- pattern es una expresion regular para realizar validaciones
           pattern="[0,9]+" solo aceptara valores del 0 al 9 y el + es que se pueden repetir-->
-        <input type="text" name="caballaje" #caballaje="ngModel" [(ngModel)]="coche.caballaje"
-        required pattern="[0-9]+">
-        <span *ngIf="caballaje.touched && !caballaje.valid">
-          El caballaje del coche es incorrecto
-        </span>
-      </p>
+      <input type="text" name="caballaje" #caballaje="ngModel" [(ngModel)]="coche.caballaje" required pattern="[0-9]+">
+      <span *ngIf="caballaje.touched && !caballaje.valid">
+        El caballaje del coche es incorrecto
+      </span>
+    </p>
 
 
-      <p>
-        <label>Color</label>
-        <!-- pattern es una expresion regular para realizar validaciones
+    <p>
+      <label>Color</label>
+      <!-- pattern es una expresion regular para realizar validaciones
           pattern="[a-zA-z#]+" solo aceptara valores del A a la Z  en May/min, y el simbolo #
           y el + es que se pueden repetir-->
-        <input type="text" name="color" #color="ngModel" [(ngModel)]="coche.color" required pattern="[a-zA-z#]+">
-        <span *ngIf="color.touched && !color.valid">
-          El color del coche es incorrecto
-        </span>
-      </p>
+      <input type="text" name="color" #color="ngModel" [(ngModel)]="coche.color" required pattern="[a-zA-z#]+">
+      <span *ngIf="color.touched && !color.valid">
+        El color del coche es incorrecto
+      </span>
+    </p>
 
 
-      <button class="btn btn-success" type="submit" [disabled]="!formCoche.form.valid">Enviar</button>
+    <button class="btn btn-success" type="submit" [disabled]="!formCoche.form.valid">Enviar</button>
 
-    </form>
+  </form>
 </div>
 
-<div style="float: left; margin-left: 100px;">
-  <h4>Listado de coches</h4>
-  <ul class="list-group">
-    <li *ngFor="let item of coches" class="list-group-item list-group-item-action">
-      {{ item.nombre }} | {{ item.caballaje }} | {{ item.color }}
+<div class="listado">
+  <div style="float: left; margin-left: 100px;">
+    <h4>Listado de coches</h4>
+    <ul class="list-group">
+      <li *ngFor="let item of coches" class="list-group-item list-group-item-action">
+        {{ item.nombre }} | {{ item.caballaje }} | {{ item.color }}
 
-    </li>
-  </ul>
+      </li>
+    </ul>
+  </div>
 </div>
 
+
+<div class="listado">
+  <div style="float: left; margin-left: 100px;">
+    <h3>Listado de articulos</h3>
+    <ul class="list-group" *ngIf="articulos" >
+      <li *ngFor="let articulo of articulos" class="list-group-item list-group-item-action">
+        {{ articulo.id }} . {{ articulo.title }}
+
+      </li>
+    </ul>
+    <span *ngIf="!articulos">cargando listado...</span>
+  </div>
+</div>
 
 
 <!--

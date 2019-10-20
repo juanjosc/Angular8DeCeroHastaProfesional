@@ -7,33 +7,44 @@ import { PeticionesService } from '../services/peticiones.service';
 
 
 @Component({
-  selector: 'app-coches',
-  templateUrl: './coches.component.html',
-  styleUrls: ['./coches.component.scss'],
+  selector: "app-coches",
+  templateUrl: "./coches.component.html",
+  styleUrls: ["./coches.component.scss"],
   providers: [PeticionesService]
 })
-
 export class CochesComponent implements OnInit {
   public createForm: FormGroup;
   public coche: Coche;
+  public articulos;
 
   public coches: Array<Coche>;
 
-  constructor(
-    private _peticionesService: PeticionesService
-  ) {
-    this.coche = new Coche("","","");
+  constructor(private _peticionesService: PeticionesService) {
+    this.coche = new Coche("", "", "");
     this.coches = [
-      new Coche("Seat Ibiza","120","blanco"),
-      new Coche("Renault CLio","115","negro")
+      new Coche("Seat Ibiza", "120", "blanco"),
+      new Coche("Renault CLio", "115", "negro")
     ];
-   }
+  }
 
   ngOnInit() {
 
-    console.log(this._peticionesService.getPrueba());
+    this._peticionesService.getArticulos().subscribe(
+      result => {
+        this.articulos = result;
+        if (!this.articulos) {
+          console.log('Error en el servidor');
+        }
 
-/*     this.createForm = new FormGroup({
+        console.log(result);
+      },
+      error => {
+        let errorMessage = <any>error;
+        console.log(errorMessage);
+      }
+    );
+
+    /*     this.createForm = new FormGroup({
       nombre: new FormControl('', [Validators.required, Validators.minLength(4)]),
       caballaje: new FormControl('', [Validators.required, Validators.maxLength(3)]),
       color: new FormControl('', [Validators.required, Validators.minLength(4)])
@@ -43,8 +54,7 @@ export class CochesComponent implements OnInit {
   }
 
   onSubmit() {
-     this.coches.push(this.coche);
-     this.coche = new Coche("","","");
+    this.coches.push(this.coche);
+    this.coche = new Coche("", "", "");
   }
-
 }
